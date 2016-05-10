@@ -30,7 +30,7 @@ class DeployBot
         ]);
     }
 
-    public function parseApiEndpoint($account)
+    private function parseApiEndpoint($account)
     {
         return str_replace('<account>', $account, $this->api_endpoint);
     }
@@ -72,7 +72,7 @@ class DeployBot
      *
      * @return $this
      */
-    public function addQuery($name, $args)
+    protected function addQuery($name, $args)
     {
         $name = $this->snakeCase($name);
 
@@ -90,7 +90,7 @@ class DeployBot
      *
      * @return object
      */
-    public function buildRequest($resource, $args = [], $method = 'get')
+    protected function buildRequest($resource, $args = [], $method = 'get')
     {
         $query = [];
 
@@ -114,7 +114,7 @@ class DeployBot
      *
      * @return object
      */
-    public function sendRequest($resource, $query = [], $method = 'get')
+    private function sendRequest($resource, $query = [], $method = 'get')
     {
         $option_name = ($method == 'get') ? 'query' : 'json';
 
@@ -138,7 +138,7 @@ class DeployBot
      *
      * @return string
      */
-    public function snakeCase($value, $delimiter = '_')
+    private function snakeCase($value, $delimiter = '_')
     {
         $key = $value.$delimiter;
 
